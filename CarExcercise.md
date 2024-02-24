@@ -15,7 +15,7 @@ Create an instance of the Car class and set its properties using the setter meth
 Print the values of the car's properties using the getter methods.
 
 For example:
-echo "Company: Nissann";
-echo "Model: Get";
+echo "Company: Nissan";
+echo "Model: Gtr";
 echo "Year: 2010";
 echo "Color: Black";

@@ -2,20 +2,47 @@
     require "./Mathimatika.php";
     require "./Car.php";
 
-    $number1 = -5;
-    $number2 = 5;
+    $company = "Opel";
+    $model = "corsa opc";
 
-    $poutsa = new Mathimatika();
 
-    $poutsa->setnumber1($number1);
-    $poutsa->setnumber2($number2);
+    $car = new Car("Nissan", "Gtr", "2010", "black");
 
-    echo $poutsa->getnumber1() . ' ';
+    // $car->setcompany($company);
+    
+    // $car->setmodel($model);
+    
+    // $car->setyear("2016");
+    
+    // $car->setcolor("grey");
 
-    echo $poutsa->getnumber2() . ' ';
 
-    echo $poutsa->multiply() . ' ';
+    echo $car->getcompany() . " ";
 
-    echo $poutsa->add() . ' ';
+    echo $car->getmodel() . " ";
+
+    echo $car->getyear() . " ";
+
+    echo $car->getcolor() . " ";
+
+
+
+
+
+    // $number1 = -5;
+    // $number2 = 5;
+
+    // $poutsa = new Mathimatika();
+
+    // $poutsa->setnumber1($number1);
+    // $poutsa->setnumber2($number2);
+
+    // echo $poutsa->getnumber1() . ' ';
+
+    // echo $poutsa->getnumber2() . ' ';
+
+    // echo $poutsa->multiply() . ' ';
+
+    // echo $poutsa->add() . ' ';
 
 ?>
