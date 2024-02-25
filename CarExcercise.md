@@ -1,21 +1,22 @@
 # Car Excercise
 
-Create a PHP class named "Car" with the following properties:
+Inside the database.php you need to create an sql script that will create the database and the tables and the columns of the tables.
 
-company
-model
-year
-color
+You will create the following tables
+- car
 
-Implement a constructor to set the initial values of the properties.
-Implement setter methods for each property to set their values.
-Implement getter methods for each property to retrieve their values.
-Create an instance of the Car class and set its properties using the setter methods.
+The car tables will have the following columns
+- company
+- model
+- year
+- color
 
-Print the values of the car's properties using the getter methods.
+After creating and running the database.php script you need to update the Car php class and add the following methods
 
-For example:
-echo "Company: Nissan";
-echo "Model: Gtr";
-echo "Year: 2010";
-echo "Color: Black";
+- createCar
+- updateCarById
+- getCarById
+- getAllCars
+- deleteCarById
+
+Each of these methods will run an sql query to do the according tasks.
