@@ -1,31 +1,40 @@
 <?php 
     require "./Mathimatika.php";
     require "./Car.php";
+    // require "./database.php";
 
     $company = "Opel";
     $model = "corsa opc";
-
+    $id = 2;
 
     $car = new Car("Nissan", "Gtr", "2010", "black");
 
-    // $car->setcompany($company);
+    $car->setcompany("seat");
     
-    // $car->setmodel($model);
+    $car->setmodel("ibiza");
     
-    // $car->setyear("2016");
+    $car->setyear("2016");
     
-    // $car->setcolor("grey");
+    $car->setcolor("grey");
 
 
-    echo $car->getcompany() . " ";
+    // echo $car->getcompany() . " ";
 
-    echo $car->getmodel() . " ";
+    // echo $car->getmodel() . " ";
 
-    echo $car->getyear() . " ";
+    // echo $car->getyear() . " ";
 
-    echo $car->getcolor() . " ";
+    // echo $car->getcolor() . " ";
 
+    // echo $car->createCar();
 
+    // echo $car->updateCarById($id);
+
+    // print_r($car->getCarById($id));
+
+    print_r($car->getAllCars());
+
+    // $car->deleteCarById($id);
 
 
 
