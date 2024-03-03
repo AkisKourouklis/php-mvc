@@ -1,24 +1,36 @@
 <?php
 
-function routeRequest($url)
+function routeRequest($url, $requestType)
 {
-    // Define routes
+    // Define routes with request types
     $routes = [
-        '/' => 'HomeController',
-        '/cars' => 'CarsController',
-        '/api/cars' => 'ApiCarsController',
+        'GET' => [
+            '/' => 'HomeController',
+            '/cars' => 'cars/ViewCarsController',
+            '/api/cars/:id' => 'ApiCarsSingleController',
+            '/api/cars' => 'ApiCarsController'
+        ],
+        'POST' => [
+            '/api/cars-create' => 'ApiCarsCreateController'
+        ],
+        'PUT' => [
+            '/api/cars-update' => 'ApiCarsUpdateController'
+        ],
+        'DELETE' => [
+            '/api/cars-delete' => 'ApiCarsDeleteController'
+        ]
     ];
 
     // Extract the path from the URL
     $path = parse_url($url, PHP_URL_PATH);
 
-    // Check if the route exists
-    if (array_key_exists($path, $routes)) {
+    // Check if the route exists for the given request type
+    if (isset($routes[$requestType]) && array_key_exists($path, $routes[$requestType])) {
         // Include the controller file
-        require_once 'controllers/' . $routes[$path] . '.php';
+        require_once 'controllers/' . $routes[$requestType][$path] . '.php';
 
         // Create an instance of the controller and call its index method
-        $controllerName = $routes[$path];
+        $controllerName = $routes[$requestType][$path];
         $controller = new $controllerName();
         $controller->index();
     } else {
