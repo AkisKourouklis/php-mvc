@@ -6,7 +6,7 @@ function routeRequest($url, $requestType)
     $routes = [
         'GET' => [
             '/' => 'HomeController',
-            '/cars' => 'cars/ViewCarsController',
+            '/cars' => 'ViewCarsController',
             '/api/cars/:id' => 'ApiCarsSingleController',
             '/api/cars' => 'ApiCarsController'
         ],
