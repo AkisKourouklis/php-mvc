@@ -5,7 +5,8 @@ function routeRequest($url)
     // Define routes
     $routes = [
         '/' => 'HomeController',
-        '/cars' => 'CarsController'
+        '/cars' => 'CarsController',
+        '/api/cars' => 'ApiCarsController',
     ];
 
     // Extract the path from the URL
