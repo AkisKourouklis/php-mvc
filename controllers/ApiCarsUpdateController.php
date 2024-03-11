@@ -1,10 +1,10 @@
 <?php
 require_once "model/CarModel.php";
 
-class ApiCarsCreateController
+class ApiCarsUpdateController
 {
 
-    public function index()
+    public function index($query)
     {
         $company = $_POST["company"];
         $model = $_POST["model"];
@@ -12,6 +12,7 @@ class ApiCarsCreateController
         $color = $_POST["color"];
 
         $car = new CarModel;
+
         $car->setcompany($company);
 
         $car->setmodel($model);
@@ -20,7 +21,7 @@ class ApiCarsCreateController
 
         $car->setcolor($color);
 
-        $json = json_encode($car->create());
+        $json = json_encode($car->update($query[0]));
 
         echo $json;
     }

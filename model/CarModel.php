@@ -18,21 +18,57 @@ class CarModel
 
     public function create()
     {
+        $sql = "INSERT INTO car (company, model, year, color)
+        VALUES
+        ('{$this->company}', '{$this->model}', '{$this->year}', '{$this->color}');";
+
+
+        if ($this->connection->query($sql)) {
+            $insertedId = $this->connection->insert_id;
+            $insertedData = $this->get($insertedId);
+            return $insertedData;
+        }
+        if ($this->connection->error) {
+            return  $this->connection->error;
+        }
+        $this->connection->close();
     }
 
-    public function update()
+    public function update($id)
     {
+        $sql = "UPDATE car SET company = '{$this->company}', model = '{$this->model}', year = '{$this->year}', color = '{$this->color}' WHERE id = $id";
+
+        $result = $this->connection->query($sql);
+
+        if ($this->connection->query($sql)) {
+            $updatedData = $this->get($id);
+
+            return $updatedData;
+        }
+        if ($this->connection->error) {
+            return  $this->connection->error;
+        }
+        $this->connection->close();
     }
 
     public function delete()
     {
     }
 
-    public function get()
+    public function get($id)
     {
-        $sql = "SELECT * FROM car";
+        $sql = "SELECT * FROM car WHERE id = $id";
+        $result = $this->connection->query($sql);
 
-        return [];
+        if ($result) {
+            return $result->fetch_row();
+        }
+
+        if ($this->connection->error) {
+            return $this->connection->error;
+        }
+
+        $this->connection->close();
     }
 
     public function getall()
@@ -49,5 +85,45 @@ class CarModel
         }
 
         $this->connection->close();
+    }
+
+    public function setcompany($a)
+    {
+        $this->company = $a;
+    }
+
+    public function setmodel($b)
+    {
+        $this->model = $b;
+    }
+
+    public function setyear($c)
+    {
+        $this->year = $c;
+    }
+
+    public function setcolor($d)
+    {
+        $this->color = $d;
+    }
+
+    public function getcompany()
+    {
+        return $this->company;
+    }
+
+    public function getmodel()
+    {
+        return $this->model;
+    }
+
+    public function getyear()
+    {
+        return $this->year;
+    }
+
+    public function getcolor()
+    {
+        return $this->color;
     }
 }
