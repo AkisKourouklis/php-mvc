@@ -51,8 +51,20 @@ class CarModel
         $this->connection->close();
     }
 
-    public function delete()
+    public function delete($id)
     {
+        $sql = "DELETE FROM car WHERE id = $id";
+        $result = $this->connection->query($sql);
+
+        if ($result) {
+            return "Record deleted successfully";
+        }
+
+        if ($this->connection->error) {
+            return $this->connection->error;
+        }
+
+        $this->connection->close();
     }
 
     public function get($id)
@@ -76,8 +88,20 @@ class CarModel
         $sql = "SELECT * FROM car";
         $result = $this->connection->query($sql);
 
-        if ($result) {
-            return $result->fetch_all();
+        if ($result && $result->num_rows > 0) {
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            $formattedRows = array();
+            foreach ($rows as $row) {
+                $formattedRow = array(
+                    'id' => $row['id'],
+                    'company' => $row['company'],
+                    'model' => $row['model'],
+                    'year' => $row['year'],
+                    'color' => $row['color']
+                );
+                $formattedRows[] = $formattedRow;
+            }
+            return $formattedRows;
         }
 
         if ($this->connection->error) {

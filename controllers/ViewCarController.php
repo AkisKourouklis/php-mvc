@@ -1,6 +1,6 @@
 <?php
 
-class ViewCarsController
+class ViewCarController
 {
 
     public function index()

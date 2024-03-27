@@ -3,8 +3,8 @@ class Db
 {
 
     private  $dbhost = 'localhost';
-    private  $dbuser = 'kostas';
-    private  $dbpass = 'kostasgr57';
+    private  $dbuser = 'root';
+    private  $dbpass = '';
     private  $dbname = 'cardb';
 
     public $conn;
