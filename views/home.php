@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../model/CarModel.php';
+
+use App\Model\CarModel;
+
 $carmodel = new CarModel();
 $cars = $carmodel->getall();
 

@@ -1,5 +1,8 @@
 <?php
-require_once "model/CarModel.php";
+
+namespace App\Controllers;
+
+use App\Model\CarModel;
 
 class ApiCarsController
 {

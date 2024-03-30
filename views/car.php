@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../model/CarModel.php';
+
+use App\Model\CarModel;
+
 $carmodel = new CarModel();
 $id = explode('/', $_SERVER['REQUEST_URI'])[2];
 $car = $carmodel->get($id);

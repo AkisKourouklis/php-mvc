@@ -1,5 +1,6 @@
 <?php
-require_once "./Db.php";
+
+use App\Database\Db;
 
 $db = new Db();
 

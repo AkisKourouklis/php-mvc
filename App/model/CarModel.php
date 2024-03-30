@@ -1,6 +1,8 @@
 <?php
 
-require_once "database/Db.php";
+namespace App\Model;
+
+use App\Database\Db;
 
 class CarModel
 {
