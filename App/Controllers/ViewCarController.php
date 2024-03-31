@@ -9,6 +9,6 @@ class ViewCarController
     {
 
 
-        require_once __DIR__ . '/../../views/car.php';
+        require_once __DIR__ . '/../views/car.php';
     }
 }
