@@ -1,12 +1,3 @@
-<?php
-
-use App\Model\CarModel;
-
-$carmodel = new CarModel();
-$cars = $carmodel->getall();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,46 +46,37 @@ $cars = $carmodel->getall();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($cars as $car) {
-
-                        ?>
-                            <tr>
-                                <div class="modal fade" id="exampleModal-<?php echo $car['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete this car?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger seconddelete" data-id="<?php echo $car['id']; ?>">Delete</button>
-
-
+                            {% for car in cars %}
+                                <tr>
+                                    <div class="modal fade" id="exampleModal-{{ car.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this car?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-danger seconddelete" data-id="{{ car.id }}">Delete</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <td><?php echo isset($car['id']) ? $car['id'] : '' ?></td>
-                                <td><?php echo isset($car['company']) ? $car['company'] : '' ?></td>
-                                <td><?php echo isset($car['model']) ? $car['model'] : '' ?></td>
-                                <td><?php echo isset($car['year']) ? $car['year'] : '' ?></td>
-                                <td><?php echo isset($car['color']) ? $car['color'] : '' ?></td>
-                                <td>
-                                    <a href="/car/<?php echo $car['id']; ?>" class="btn btn-primary">update</a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php
-                                                                                                                                        echo $car['id']; ?>">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
+                                    <td>{{ car.id }}</td>
+                                    <td>{{ car.company }}</td>
+                                    <td>{{ car.model }}</td>
+                                    <td>{{ car.year }}</td>
+                                    <td>{{ car.color }}</td>
+                                    <td>
+                                        <a href="/car/{{ car.id }}" class="btn btn-primary">update</a>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ car.id }}">
+                                            Delete
+                                    </td>
+                                </tr>
+                            {% endfor %}
                     </tbody>
                 </table>
             </div>

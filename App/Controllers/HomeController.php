@@ -2,10 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Model\CarModel;
+
 class HomeController
 {
-    public function index()
+    public function index($params, $twig)
     {
-        require_once __DIR__ . '/../views/home.php';
+        $carmodel = new CarModel();
+        $cars = $carmodel->getall();
+        echo $twig->render('home.twig', ['cars' => $cars]);
     }
 }

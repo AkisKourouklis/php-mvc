@@ -75,7 +75,7 @@ class CarModel
         $result = $this->connection->query($sql);
 
         if ($result) {
-            return $result->fetch_row();
+            return $result->fetch_assoc();
         }
 
         if ($this->connection->error) {

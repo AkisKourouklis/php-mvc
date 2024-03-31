@@ -11,6 +11,13 @@ use App\Controllers\ViewCarController;
 
 class Router
 {
+    private static function getTwig()
+    {
+        // Load the Twig library
+        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
+        return new \Twig\Environment($loader);
+    }
+
     public static function routeRequest($url, $requestType)
     {
         // Define routes with request types
@@ -61,7 +68,7 @@ class Router
                             $controller = new ApiCarsDeleteController;
                             break;
                     }
-                    $controller->index(array_slice($matches, 1));
+                    $controller->index(array_slice($matches, 1), self::getTwig());
                     return;
                 }
             }
