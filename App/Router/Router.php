@@ -7,7 +7,9 @@ use App\Controllers\ApiCarsDeleteController;
 use App\Controllers\ApiCarsSingleController;
 use App\Controllers\ApiCarsUpdateController;
 use App\Controllers\HomeController;
+use App\Controllers\PublicController;
 use App\Controllers\ViewCarController;
+use App\Controllers\CarListController;
 
 class Router
 {
@@ -24,9 +26,11 @@ class Router
         $routes = [
             'GET' => [
                 '/' => 'HomeController',
+                '/carlist' => 'CarListController', // Change 'HomeController' to 'CarListController
                 '/car/:id' => 'ViewCarController',
                 '/api/cars/:id' => 'ApiCarsSingleController',
-                '/api/cars' => 'ApiCarsController'
+                '/api/cars' => 'ApiCarsController',
+                '/public/:file' => 'PublicController'
             ],
             'POST' => [
                 '/api/cars-create' => 'ApiCarsCreateController',
@@ -45,12 +49,15 @@ class Router
         if (isset($routes[$requestType])) {
             foreach ($routes[$requestType] as $route => $controllerName) {
                 // Replace :id with a regex
-                $routeRegex = preg_replace('/\/:id/', '/([0-9]+)', $route);
+                $routeRegex = preg_replace('/\/:([a-zA-Z0-9_\-.]+)/', '/([a-zA-Z0-9_\-.]+)', $route);
                 if (preg_match("#^$routeRegex$#", $path, $matches)) {
                     // Include the controller file
                     switch ($controllerName) {
                         case 'HomeController':
                             $controller = new HomeController;
+                            break;
+                        case 'CarListController':
+                            $controller = new CarListController;
                             break;
                         case 'ViewCarController':
                             $controller = new ViewCarController;
@@ -66,6 +73,9 @@ class Router
                             break;
                         case 'ApiCarsDeleteController':
                             $controller = new ApiCarsDeleteController;
+                            break;
+                        case 'PublicController':
+                            $controller = new PublicController;
                             break;
                     }
                     $controller->index(array_slice($matches, 1), self::getTwig());

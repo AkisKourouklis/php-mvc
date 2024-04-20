@@ -1,0 +1,173 @@
+{% extends 'layout.twig' %}
+{% block body %}
+	<div class='position-absolute'>
+		<form action="/carlist" method='get'>
+			<div class="filters">
+				<div class="filter">
+					<label for="company-filter">Company:</label>
+					<select id="company-filter" name="company">
+						<option value="">All</option>
+						<option value="Toyota">Toyota</option>
+						<option value="Honda">Honda</option>
+						<option value="Ford">Ford</option>
+					</select>
+				</div>
+				<div class="filter">
+					<label for="year-filter">Year:</label>
+					<select id="year-filter" name="year">
+						<option value="">All</option>
+						<option value="2022">2022</option>
+						<option value="2021">2021</option>
+						<option value="2020">2020</option>
+					</select>
+				</div>
+				<div class="filter">
+					<label for="color-filter">Color:</label>
+					<select id="color-filter" name="color">
+						<option value="">All</option>
+						<option value="Red">Red</option>
+						<option value="Blue">Blue</option>
+						<option value="Green">Green</option>
+					</select>
+				</div>
+				<div class="filter">
+					<label for="availability-filter">Availability:</label>
+					<ul>
+						<li>
+							<label for="available-filter">Available</label>
+							<input type="radio" id="available-filter" name="availability" value="available">
+						</li>
+						<li>
+							<label for="not-available-filter">Not available</label>
+							<input type="radio" id="not-available-filter" name="availability" value="not-available">
+
+
+						</li>
+					</ul>
+				</div>
+				<div class="filter">
+					<label class="filter row">
+						By Price
+					</label>
+					<ul>
+						<li>
+							<label for="price-filter-1">0 - 10000</label>
+							<input type="radio" id="price-filter-1" name="price-filter" value="0-10000">
+
+						</li>
+						<li>
+							<label for="price-filter-2">10000 - 20000</label>
+							<input type="radio" id="price-filter-2" name="price-filter" value="10000-20000">
+
+						</li>
+					</ul>
+
+				</div>
+				<div class="filter">
+					<label for="power-filter">Power:</label>
+					<select id="power-filter" name="lowest-power">
+						<option value="90">90</option>
+						<option value="150">150</option>
+						<option value="250">250</option>
+						<option value="350">350</option>
+					</select>
+					<select id="power-filter" name="highest-power">
+						<option value="350+">350+</option>
+						<option value="150">250</option>
+						<option value="250">150</option>
+						<option value="350">90</option>
+					</select>
+				</div>
+
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary">Apply Filters</button>
+				<button type="submit" class="btn btn-danger">Clear Filters</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class='d-flex justify-content-between align-items-center mb-2'>
+					<h2>
+						<i class="fa-solid fa-car"></i>Car List</h2>
+
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						Add Car
+					</button>
+				</div>
+
+				<table class="table">
+					<tbody>
+						{% for car in cars %}
+							<div class="col-12">
+								<div class="card">
+									<div class="card-body">
+										<div class='row'>
+											<div class='col-4'>
+												<img src="/public/images/mx5.jpg" alt="MX5" class="img">
+											</div>
+											<div class='col-8'>
+												<h5 class="card-title">{{ car.company }}
+													{{ car.model }}</h5>
+												<p class="card-text">
+													<strong>Year:</strong>
+													{{ car.year }}<br>
+													<strong>Color:</strong>
+													{{ car.color }}
+												</p>
+												<a href="/car/{{ car.id }}" class="btn btn-primary">Update</a>
+												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ car.id }}">Delete</button>
+											</div>
+										</div>
+									</div>
+
+								{% endfor %}
+							</tbody>
+						</tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form id='createform' action="api/cars-create" method='post'>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add a new car</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<div class="mb-3">
+							<label for="company" class="form-label">Write the company</label>
+							<input type="text" class="form-control" id="company" name='company'>
+						</div>
+						<div class="mb-3">
+							<label for="model" class="form-label">Write the model</label>
+							<input type="text" class="form-control" id="model" name='model'>
+						</div>
+						<div class="mb-3">
+							<label for="year" class="form-label">Write the year</label>
+							<input type="text" class="form-control" id="year" name='year'>
+						</div>
+						<div class="mb-3">
+							<label for="color" class="form-label">Write the color</label>
+							<input type="text" class="form-control" id="color" name='color'>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save car</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}
