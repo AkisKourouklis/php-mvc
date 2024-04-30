@@ -6,7 +6,7 @@ $(document).ready(function () {
       type: $(this).attr("method"),
       data: $(this).serialize(),
       success: function (response) {
-        window.location.href = "/";
+        window.location.href = "/carlist";
       },
     });
   });

@@ -106,9 +106,15 @@
 								<div class="card">
 									<div class="card-body">
 										<div class='row'>
-											<div class='col-4'>
-												<img src="/public/images/mx5.jpg" alt="MX5" class="img">
-											</div>
+											{% if car.image %}
+												<div class='col-4'>
+													<img src="{{ car.image }}" alt="{{ car.company }} {{ car.model }}" class="img">
+												</div>
+											{% else %}
+												<div class='col-4'>
+													<img src="/public/images/mx5.jpg" alt="MX5" class="img">
+												</div>
+											{% endif %}
 											<div class='col-8'>
 												<h5 class="card-title">{{ car.company }}
 													{{ car.model }}</h5>
@@ -117,6 +123,22 @@
 													{{ car.year }}<br>
 													<strong>Color:</strong>
 													{{ car.color }}
+													<strong>Price:</strong>
+													{{ car.price }}
+													<strong>Power:</strong>
+													{{ car.power }}
+													<strong>Engine:</strong>
+													{{ car.engine }}
+													<strong>Mileage:</strong>
+													{{ car.mileage }}
+													<strong>Fuel Type:</strong>
+													{{ car.fuel_type }}
+													<strong>Location:</strong>
+													{{ car.location }}
+													<strong>Drive Type:</strong>
+													{{ car.drive_type }}
+													<strong>Doors:</strong>
+													{{ car.doors }}
 												</p>
 												<a href="/car/{{ car.id }}" class="btn btn-primary">Update</a>
 												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ car.id }}">Delete</button>
@@ -160,6 +182,43 @@
 							<label for="color" class="form-label">Write the color</label>
 							<input type="text" class="form-control" id="color" name='color'>
 						</div>
+						<div class="mb-3">
+							<label for="price" class="form-label">Write the price</label>
+							<input type="text" class="form-control" id="price" name='price'>
+						</div>
+						<div class="mb-3">
+							<label for="power" class="form-label">Write the power</label>
+							<input type="text" class="form-control" id="power" name='power'>
+						</div>
+						<div class="mb-3">
+							<label for="engine" class="form-label">Write the engine</label>
+							<input type="text" class="form-control" id="engine" name='engine'>
+						</div>
+						<div class="mb-3">
+							<label for="image" class="form-label">Write the image</label>
+							<input type="text" class="form-control" id="image" name='image'>
+						</div>
+						<div class="mb-3">
+							<label for="mileage" class="form-label">Write the mileage</label>
+							<input type="text" class="form-control" id="mileage" name='mileage'>
+						</div>
+						<div class="mb-3">
+							<label for="fuel_type" class="form-label">Write the fuel type</label>
+							<input type="text" class="form-control" id="fuel_type" name='fuel_type'>
+						</div>
+						<div class="mb-3">
+							<label for="location" class="form-label">Write the location</label>
+							<input type="text" class="form-control" id="location" name='location'>
+						</div>
+						<div class="mb-3">
+							<label for="drive_type" class="form-label">Write the drive type</label>
+							<input type="text" class="form-control" id="drive_type" name='drive_type'>
+						</div>
+						<div class="mb-3">
+							<label for="doors" class="form-label">Write the doors</label>
+							<input type="text" class="form-control" id="doors" name='doors'>
+						</div>
+
 
 					</div>
 					<div class="modal-footer">
@@ -170,4 +229,28 @@
 			</div>
 		</form>
 	</div>
+
+	{% for car in cars %}
+		<div class="modal fade" id="exampleModal-{{ car.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Delete car</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to delete the car
+							{{ car.company }}
+							{{ car.model }}?</p>
+						<input type="hidden" name="id" value="{{ car.id }}">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-danger seconddelete" data-id="{{car.id}}">Delete car</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
 {% endblock %}
