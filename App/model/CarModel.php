@@ -94,9 +94,29 @@ class CarModel
         $this->connection->close();
     }
 
-    public function getall()
+    public function getall($filters)
     {
         $sql = "SELECT * FROM car";
+        $where = [];
+        foreach ($filters as $key => $value) {
+            if ($value && ($key !== 'power')) {
+                $where[] = "$key = '$value'";
+            }
+        }
+        if (count($where) > 0) {
+            $sql .= " WHERE " . implode(' AND ', $where);
+            if (isset($filters['power']['lowest'])) {
+                $lowest = $filters['power']['lowest'];
+                $highest = $filters['power']['highest'];
+                $sql .= " AND power BETWEEN $lowest AND $highest";
+            }
+        } else if (isset($filters['power']['lowest'])) {
+            $lowest = $filters['power']['lowest'];
+            $highest = $filters['power']['highest'];
+            $sql .= " WHERE power BETWEEN $lowest AND $highest";
+        }
+
+
         $result = $this->connection->query($sql);
 
         if ($result && $result->num_rows > 0) {

@@ -10,15 +10,50 @@
 						<option value="Toyota">Toyota</option>
 						<option value="Honda">Honda</option>
 						<option value="Ford">Ford</option>
+						<option value="Mazda">Mazda</option>
+						<option value="Nissan">Nissan</option>
+						<option value="Chevrolet">Chevrolet</option>
+						<option value="Mercedes">Mercedes</option>
+						<option value="BMW">BMW</option>
+						<option value="Audi">Audi</option>
+						<option value="Volkswagen">Volkswagen</option>
+						<option value="Hyundai">Hyundai</option>
+						<option value="Kia">Kia</option>
+						<option value="Subaru">Subaru</option>
+						<option value="Jeep">Jeep</option>
+						<option value="Volvo">Volvo</option>
+						<option value="Porsche">Porsche</option>
+						<option value="Lexus">Lexus</option>
+						<option value="Land Rover">Land Rover</option>
+						<option value="Jaguar">Jaguar</option>
+						<option value="Mitsubishi">Mitsubishi</option>
+						<option value="Infiniti">Infiniti</option>
+						<option value="Acura">Acura</option>
+						<option value="Buick">Buick</option>
+						<option value="Cadillac">Cadillac</option>
+						<option value="Lincoln">Lincoln</option>
+						<option value="Opel">Opel</option>
 					</select>
 				</div>
 				<div class="filter">
 					<label for="year-filter">Year:</label>
 					<select id="year-filter" name="year">
 						<option value="">All</option>
+						<option value="2024">2024</option>
+						<option value="2023">2023</option>
 						<option value="2022">2022</option>
 						<option value="2021">2021</option>
 						<option value="2020">2020</option>
+						<option value="2019">2019</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+						<option value="2010">2010</option>
 					</select>
 				</div>
 				<div class="filter">
@@ -28,6 +63,16 @@
 						<option value="Red">Red</option>
 						<option value="Blue">Blue</option>
 						<option value="Green">Green</option>
+						<option value="Yellow">Yellow</option>
+						<option value="Black">Black</option>
+						<option value="White">White</option>
+						<option value="Silver">Silver</option>
+						<option value="Gray">Gray</option>
+						<option value="Brown">Brown</option>
+						<option value="Orange">Orange</option>
+						<option value="Purple">Purple</option>
+						<option value="Pink">Pink</option>
+						<option value="Beige">Beige</option>
 					</select>
 				</div>
 				<div class="filter">
@@ -60,6 +105,18 @@
 							<input type="radio" id="price-filter-2" name="price-filter" value="10000-20000">
 
 						</li>
+						<li>
+							<label for="price-filter-3">20000 - 30000</label>
+							<input type="radio" id="price-filter-3" name="price-filter" value="20000-30000">
+						</li>
+						<li>
+							<label for="price-filter-4">30000 - 40000</label>
+							<input type="radio" id="price-filter-4" name="price-filter" value="30000-40000">
+						</li>
+						<li>
+							<label for="price-filter-5">40000 - 50000</label>
+							<input type="radio" id="price-filter-5" name="price-filter" value="40000-50000">
+						</li>
 					</ul>
 
 				</div>
@@ -70,9 +127,22 @@
 						<option value="150">150</option>
 						<option value="250">250</option>
 						<option value="350">350</option>
+						<option value="450">450</option>
+						<option value="550">550</option>
+						<option value="650">650</option>
+						<option value="750">750</option>
+						<option value="850">850</option>
+						<option value="950">950</option>
 					</select>
 					<select id="power-filter" name="highest-power">
-						<option value="350+">350+</option>
+						<option value="1400">1400+</option>
+						<option value="950">950</option>
+						<option value="850">850</option>
+						<option value="750">750</option>
+						<option value="650">650</option>
+						<option value="550">550</option>
+						<option value="450">450</option>
+						<option value="350">350</option>
 						<option value="150">250</option>
 						<option value="250">150</option>
 						<option value="350">90</option>
@@ -202,6 +272,7 @@
 							<label for="mileage" class="form-label">Write the mileage</label>
 							<input type="text" class="form-control" id="mileage" name='mileage'>
 						</div>
+
 						<div class="mb-3">
 							<label for="fuel_type" class="form-label">Write the fuel type</label>
 							<input type="text" class="form-control" id="fuel_type" name='fuel_type'>
@@ -252,5 +323,6 @@
 			</div>
 		</div>
 	{% endfor %}
+
 
 {% endblock %}
