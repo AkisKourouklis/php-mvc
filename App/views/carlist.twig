@@ -301,6 +301,13 @@
 		</form>
 	</div>
 
+	{% if message %}
+		<div class="centered-message" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+			<p>>
+				{{ message }}</p>
+		</div>
+	{% endif %}
+
 	{% for car in cars %}
 		<div class="modal fade" id="exampleModal-{{ car.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

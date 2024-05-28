@@ -132,3 +132,14 @@
 .filter > * {
   margin: 0 10px;
 }
+
+.centered-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5em; /* Increase the font size */
+  color: #004e95; /* Change the text color */
+  border-radius: 10px; /* Round the corners */
+  padding: 20px; /* Add some padding */
+}

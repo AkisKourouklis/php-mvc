@@ -30,9 +30,16 @@ class CarListController
             'drive_type' => $_GET['drive_type'] ?? null,
             'doors' => $_GET['doors'] ?? null,
         ];
-
         $carmodel = new CarModel();
-        $cars = $carmodel->getall($filters);
-        echo $twig->render('carlist.twig', ['cars' => $cars]);
+        if (isset($_GET['q'])) {
+            $cars = $carmodel->search($_GET['q']);
+        } else {
+            $cars = $carmodel->getall($filters);
+        }
+        $message = '';
+        if (empty($cars)) {
+            $message = 'No cars found';
+        }
+        echo $twig->render('carlist.twig', ['cars' => $cars, 'message' => $message]);
     }
 }

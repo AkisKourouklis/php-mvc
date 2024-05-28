@@ -94,6 +94,44 @@ class CarModel
         $this->connection->close();
     }
 
+    public function search($query)
+    {
+        $sql = "SELECT * FROM car WHERE company LIKE '%$query%' OR model LIKE '%$query%' OR year LIKE '%$query%' OR color LIKE '%$query%' OR price LIKE '%$query%' OR power LIKE '%$query%' OR engine LIKE '%$query%' OR image LIKE '%$query%' OR mileage LIKE '%$query%' OR fuel_type LIKE '%$query%' OR location LIKE '%$query%' OR drive_type LIKE '%$query%' OR doors LIKE '%$query%'";
+
+        $result = $this->connection->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            $formattedRows = array();
+            foreach ($rows as $row) {
+                $formattedRow = array(
+                    'id' => $row['id'],
+                    'company' => $row['company'],
+                    'model' => $row['model'],
+                    'year' => $row['year'],
+                    'color' => $row['color'],
+                    'price' => $row['price'],
+                    'power' => $row['power'],
+                    'engine' => $row['engine'],
+                    'image' => $row['image'],
+                    'mileage' => $row['mileage'],
+                    'fuel_type' => $row['fuel_type'],
+                    'location' => $row['location'],
+                    'drive_type' => $row['drive_type'],
+                    'doors' => $row['doors']
+                );
+                $formattedRows[] = $formattedRow;
+            }
+            return $formattedRows;
+        }
+
+        if ($this->connection->error) {
+            return $this->connection->error;
+        }
+
+        $this->connection->close();
+    }
+
     public function getall($filters)
     {
         $sql = "SELECT * FROM car";
